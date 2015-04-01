@@ -14,7 +14,8 @@ var Carousel = React.createClass({
     return {
       width: 375,
       indicatorColor: '#000000',
-      inactiveIndicatorColor: '#999999'
+      inactiveIndicatorColor: '#999999',
+      indicatorAtBottom:true
     };
   },
 
@@ -28,12 +29,13 @@ var Carousel = React.createClass({
 
     return (
       <View style={{ flex: 1 }}>
-        <ScrollView
+        <ScrollView ref="scrollview"
           contentContainerStyle={styles.container}
           automaticallyAdjustContentInsets={false}
           horizontal={true}
           pagingEnabled={true}
           showsHorizontalScrollIndicator={false}
+          bounces={false}
           onMomentumScrollEnd={this.onAnimationEnd}
         >
           {this.props.children}
@@ -41,6 +43,13 @@ var Carousel = React.createClass({
         {this.renderPageIndicator()}
       </View>
     );
+  },
+  indicatorPressed(ind){
+    this.setState({
+      activePage:ind
+    });
+
+    this.refs.scrollview.scrollTo(0,ind*this.props.width);
   },
 
   renderPageIndicator() {
@@ -54,11 +63,11 @@ var Carousel = React.createClass({
 
     for (var i=0; i< this.props.children.length; i++) {
       style = i === this.state.activePage ? { color: this.props.indicatorColor } : { color: this.props.inactiveIndicatorColor };
-      indicators.push(<Text style={style}>&bull;</Text>);
+      indicators.push(<Text style={style} key={i} onPress={this.indicatorPressed.bind(this,i)}>&bull;</Text>)
     }
 
     return (
-      <View style={[styles.pageIndicator, position]}>
+      <View style={[styles.pageIndicator, position,this.props.indicatorAtBottom?styles.pageIndicatorBottom:styles.pageIndicatorTop]}>
         {indicators}
       </View>
     );
@@ -86,10 +95,16 @@ var styles = StyleSheet.create({
     position: 'absolute',
     flexDirection: 'row',
     flex: 1,
-    bottom: 20,
     justifyContent: 'space-around',
-    alignItems: 'center'
+    alignItems: 'center',
+    backgroundColor:'transparent'
   },
+  pageIndicatorTop: {
+    top: 20
+  },
+  pageIndicatorBottom: {
+    bottom:20
+  }
 });
 
 module.exports = Carousel;
