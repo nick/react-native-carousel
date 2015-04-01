@@ -1,0 +1,26 @@
+{
+  "name": "react-native-carousel",
+  "version": "0.1.0",
+  "description": "Simple carousel component for react-native",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nick/react-native-carousel.git"
+  },
+  "keywords": [
+    "react-native",
+    "carousel"
+  ],
+  "author": "Nick Poulden <nick@poulden.com> (https://github.com/nick)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/nick/react-native-carousel/issues"
+  },
+  "homepage": "https://github.com/nick/react-native-carousel",
+  "dependencies": {
+    "react-native": "^0.3.1"
+  }
+}
