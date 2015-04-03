@@ -18,6 +18,8 @@ indicatorAtBottom={true} //Set to false to show the indicators at the top
 Assuming you have `npm install -g react-native-cli`, first generate an app:
 
     react-native init RNCarousel
+    cd RNCarousel
+    npm install react-native-carousel --save
 
 Then paste the following into `RNCarousel/index.ios.js`:
 
