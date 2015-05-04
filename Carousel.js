@@ -79,6 +79,9 @@ var Carousel = React.createClass({
     this.setState({
       activePage: activePage
     });
+    if (this.props.onPageChange) {
+      this.props.onPageChange(activePage);
+    }
   }
 });
 
