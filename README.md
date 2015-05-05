@@ -8,9 +8,10 @@ npm install react-native-carousel
 ###Properties
 
 ```
-indicatorColor="#FFFFFF" //Active indicator color
-inactiveIndicatorColor="#999999" //Inactive indicator color
-indicatorAtBottom={true} //Set to false to show the indicators at the top
+indicatorColor="#FFFFFF" // Active indicator color
+inactiveIndicatorColor="#999999" // Inactive indicator color
+indicatorAtBottom={true} // Set to false to show the indicators at the top
+onPageChange={callback} // Called when the active page changes
 ```
 
 ### Usage example
