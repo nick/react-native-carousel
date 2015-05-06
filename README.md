@@ -8,6 +8,7 @@ npm install react-native-carousel
 ###Properties
 
 ```
+hideIndicators={false} // Set to true to hide the indicators
 indicatorColor="#FFFFFF" // Active indicator color
 inactiveIndicatorColor="#999999" // Inactive indicator color
 indicatorAtBottom={true} // Set to false to show the indicators at the top

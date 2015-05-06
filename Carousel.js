@@ -12,10 +12,11 @@ var Carousel = React.createClass({
 
   getDefaultProps() {
     return {
-      width: 375,
+      hideIndicators: false,
       indicatorColor: '#000000',
       inactiveIndicatorColor: '#999999',
-      indicatorAtBottom:true
+      indicatorAtBottom: true,
+      width: 375
     };
   },
 
@@ -53,6 +54,10 @@ var Carousel = React.createClass({
   },
 
   renderPageIndicator() {
+    if (this.props.hideIndicators === true) {
+      return null;
+    }
+
     var indicators = [],
         indicatorStyle = this.props.indicatorAtBottom ? styles.pageIndicatorBottom : styles.pageIndicatorTop,
         style, position;
