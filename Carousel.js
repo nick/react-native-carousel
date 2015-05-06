@@ -12,7 +12,7 @@ var Carousel = React.createClass({
 
   getDefaultProps() {
     return {
-      hideIndicators: true,
+      hideIndicators: false,
       indicatorColor: '#000000',
       inactiveIndicatorColor: '#999999',
       indicatorAtBottom: true,
