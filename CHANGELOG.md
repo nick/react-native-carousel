@@ -1,3 +1,6 @@
+### 0.3.3
+- Add `indicatorSize` prop (@daviferreira)
+
 ### 0.3.2
 - Add `hideIndicators` prop (@daviferreira)
 
