@@ -16,7 +16,8 @@ var Carousel = React.createClass({
       indicatorColor: '#000000',
       inactiveIndicatorColor: '#999999',
       indicatorAtBottom: true,
-      width: 375
+      width: 375,
+      pointSize:17
     };
   },
 
@@ -69,7 +70,7 @@ var Carousel = React.createClass({
 
     for (var i=0; i< this.props.children.length; i++) {
       style = i === this.state.activePage ? { color: this.props.indicatorColor } : { color: this.props.inactiveIndicatorColor };
-      indicators.push(<Text style={style} key={i} onPress={this.indicatorPressed.bind(this,i)}>&bull;</Text>);
+      indicators.push(<Text style={[style,{fontSize:this.props.pointSize}]} key={i} onPress={this.indicatorPressed.bind(this,i)}>&bull;</Text>);
     }
 
     return (
