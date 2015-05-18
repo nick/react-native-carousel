@@ -17,6 +17,7 @@ var Carousel = React.createClass({
       indicatorSize: 20,
       inactiveIndicatorColor: '#999999',
       indicatorAtBottom: true,
+      indicatorPosition:20,
       width: 375
     };
   },
@@ -58,9 +59,18 @@ var Carousel = React.createClass({
     if (this.props.hideIndicators === true) {
       return null;
     }
-
+    
+    var pageIndicatorStyles = StyleSheet.create({
+        pageIndicatorTop: {
+            top: this.props.indicatorPosition
+        },
+        pageIndicatorBottom: {
+            bottom: this.props.indicatorPosition
+        }
+    });
+        
     var indicators = [],
-        indicatorStyle = this.props.indicatorAtBottom ? styles.pageIndicatorBottom : styles.pageIndicatorTop,
+        indicatorStyle = this.props.indicatorAtBottom ? pageIndicatorStyles.pageIndicatorBottom : pageIndicatorStyles.pageIndicatorTop,
         style, position;
 
     position = {
@@ -108,12 +118,6 @@ var styles = StyleSheet.create({
     justifyContent: 'space-around',
     alignItems: 'center',
     backgroundColor:'transparent'
-  },
-  pageIndicatorTop: {
-    top: 20
-  },
-  pageIndicatorBottom: {
-    bottom:20
   }
 });
 
