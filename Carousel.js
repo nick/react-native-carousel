@@ -34,7 +34,7 @@ var Carousel = React.createClass({
       this.setState({
         activePage: this.props.initialPage
       });
-      this.refs.scrollView.scrollWithoutAnimationTo(0, this.props.initialPage * width);
+      this.refs.scrollview.scrollWithoutAnimationTo(0, this.props.initialPage * width);
     }
   },
 
