@@ -17,7 +17,8 @@ var Carousel = React.createClass({
       indicatorSize: 20,
       inactiveIndicatorColor: '#999999',
       indicatorAtBottom: true,
-      width: 375
+      width: 375,
+      initialPage: 0
     };
   },
 
@@ -25,6 +26,16 @@ var Carousel = React.createClass({
     return {
       activePage: 0
     };
+  },
+  
+  componentDidMount() {
+    if (this.props.initialPage > 0) {
+      var width = this.props.initialPage * this.props.width;
+      this.setState({
+        activePage: this.props.initialPage
+      });
+      this.refs.scrollview.scrollWithoutAnimationTo(0, this.props.initialPage * width);
+    }
   },
 
   render() {
@@ -46,6 +57,7 @@ var Carousel = React.createClass({
       </View>
     );
   },
+  
   indicatorPressed(ind){
     this.setState({
       activePage:ind
