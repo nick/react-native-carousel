@@ -18,7 +18,8 @@ var Carousel = React.createClass({
       inactiveIndicatorColor: '#999999',
       indicatorAtBottom: true,
       width: 375,
-      initialPage: 0
+      initialPage: 0,
+      indicatorSpace: 15
     };
   },
 
@@ -27,7 +28,7 @@ var Carousel = React.createClass({
       activePage: 0
     };
   },
-  
+
   componentDidMount() {
     if (this.props.initialPage > 0) {
       var width = this.props.initialPage * this.props.width;
@@ -57,7 +58,7 @@ var Carousel = React.createClass({
       </View>
     );
   },
-  
+
   indicatorPressed(ind){
     this.setState({
       activePage:ind
@@ -76,7 +77,7 @@ var Carousel = React.createClass({
         style, position;
 
     position = {
-      width: this.props.children.length * 15,
+      width: this.props.children.length * this.props.indicatorSpace,
     };
     position.left = (this.props.width - position.width) / 2;
 
