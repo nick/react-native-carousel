@@ -1,3 +1,6 @@
+### 0.3.5
+- Add `indicatorSpace` prop (@alinz)
+
 ### 0.3.3
 - Add `indicatorSize` prop (@daviferreira)
 
