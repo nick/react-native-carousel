@@ -7,6 +7,7 @@ var {
   Text,
   ScrollView,
 } = React;
+var screen = require('Dimensions').get('window');
 
 var Carousel = React.createClass({
 
@@ -17,8 +18,9 @@ var Carousel = React.createClass({
       indicatorSize: 20,
       inactiveIndicatorColor: '#999999',
       indicatorAtBottom: true,
-      width: 375,
+      width: screen.width,
       initialPage: 0,
+      bounces: false,
       indicatorSpace: 15
     };
   },
@@ -49,7 +51,7 @@ var Carousel = React.createClass({
           horizontal={true}
           pagingEnabled={true}
           showsHorizontalScrollIndicator={false}
-          bounces={false}
+          bounces={this.props.bounces}
           onMomentumScrollEnd={this.onAnimationEnd}
         >
           {this.props.children}
