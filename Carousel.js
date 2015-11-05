@@ -129,6 +129,7 @@ var Carousel = React.createClass({
     if (this.props.onPageChange) {
       this.props.onPageChange(activePage);
     }
+
   },
 
   render() {
