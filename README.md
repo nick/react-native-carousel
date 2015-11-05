@@ -18,7 +18,7 @@ onPageChange={callback} // Called when the active page changes
 
 animate={true} // Enable carousel autoplay
 delay={1000} // Set Animation delay between slides
-loop={true} // Allow infinite looped animation. Depends on Prop {...animate} set to true.
+loop={true} // Allow infinite looped animation. Depends on Prop {...animate} set to true. 
  
 ```
 
