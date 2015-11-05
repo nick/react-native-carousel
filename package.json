@@ -20,6 +20,9 @@
     "url": "https://github.com/nick/react-native-carousel/issues"
   },
   "homepage": "https://github.com/nick/react-native-carousel",
+  "dependencies": {
+    "react-timer-mixin": "^0.13.3"
+  },
   "peerDependencies": {
     "react-native": ">=0.4 <1.0"
   }

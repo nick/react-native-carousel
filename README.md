@@ -15,6 +15,11 @@ indicatorSpace={15} // space between each indicator
 inactiveIndicatorColor="#999999" // Inactive indicator color
 indicatorAtBottom={true} // Set to false to show the indicators at the top
 onPageChange={callback} // Called when the active page changes
+
+animate={true} // Enable carousel autoplay
+delay={1000} // Set Animation delay between slides
+loop={true} // Allow infinite looped animation. Depends on Prop {...animate} set to true. 
+ 
 ```
 
 ### Usage example
