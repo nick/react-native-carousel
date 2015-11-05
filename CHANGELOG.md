@@ -1,3 +1,6 @@
+### 0.4
+- Add autoplay and looping options (@PraiseGeek)
+
 ### 0.3.5
 - Add `indicatorSpace` prop (@alinz)
 
