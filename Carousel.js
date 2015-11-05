@@ -8,24 +8,36 @@ var {
   ScrollView,
 } = React;
 
+var TimerMixin = require('react-timer-mixin');
+
+var Dimensions = require('Dimensions');
+var { width, height} = Dimensions.get('window');
+
+
 var Carousel = React.createClass({
 
+  mixins: [TimerMixin],
   getDefaultProps() {
     return {
       hideIndicators: false,
       indicatorColor: '#000000',
-      indicatorSize: 20,
+      indicatorSize: 50,
       inactiveIndicatorColor: '#999999',
       indicatorAtBottom: true,
-      width: 375,
+      width: width,
       initialPage: 0,
-      indicatorSpace: 15
+      indicatorSpace: 25,
+      marginDistance: 20, //TODO
+      animate: true,
+      delay: 1000,
+      loop: true,
     };
   },
 
   getInitialState() {
     return {
-      activePage: 0
+      activePage: 0,
+      position: { width: 0, height: 0, left: 0 }
     };
   },
 
@@ -35,36 +47,20 @@ var Carousel = React.createClass({
       this.setState({
         activePage: this.props.initialPage
       });
-      this.refs.scrollview.scrollWithoutAnimationTo(0, this.props.initialPage * width);
+      this.refs.scrollView.scrollWithoutAnimationTo(0, this.props.initialPage * width);
     }
-  },
 
-  render() {
+    if (this.props.animate && this.props.children){
+        this._setUpTimer();
+    }
 
-    return (
-      <View style={{ flex: 1 }}>
-        <ScrollView ref="scrollview"
-          contentContainerStyle={styles.container}
-          automaticallyAdjustContentInsets={false}
-          horizontal={true}
-          pagingEnabled={true}
-          showsHorizontalScrollIndicator={false}
-          bounces={false}
-          onMomentumScrollEnd={this.onAnimationEnd}
-        >
-          {this.props.children}
-        </ScrollView>
-        {this.renderPageIndicator()}
-      </View>
-    );
   },
 
   indicatorPressed(ind){
     this.setState({
       activePage:ind
     });
-
-    this.refs.scrollview.scrollTo(0,ind*this.props.width);
+    this.refs.scrollView.scrollTo(0,ind*width);
   },
 
   renderPageIndicator() {
@@ -93,15 +89,65 @@ var Carousel = React.createClass({
     );
   },
 
-  onAnimationEnd(e) {
+  _setUpTimer() {
+     if (this.props.children.length > 1) {
+         this.clearTimeout(this.timer);
+         this.timer = this.setTimeout(this._animateNextPage, this.props.delay);
+     }
+  },
+
+  _animateNextPage() {
+     if (this.state.activePage == this.props.children.length - 1) {
+         if (this.props.loop)
+            var k = 0;
+         else
+            return;
+     } else {
+         var k = this.state.activePage;
+         k++;
+     }
+
+     this.setState({activePage: k});
+
+     this.refs.scrollView.scrollTo(0, k * width);
+     this._setUpTimer();
+  },
+
+  _onAnimationBegin(e) {
+     this.clearTimeout(this.timer);
+  },
+
+  _onAnimationEnd(e) {
     var activePage = e.nativeEvent.contentOffset.x / this.props.width;
+
     this.setState({
       activePage: activePage
     });
-    if (this.props.onPageChange) {
-      this.props.onPageChange(activePage);
-    }
-  }
+
+    this._animateNextPage();
+  },
+
+  render() {
+
+    return (
+      <View style={{ flex: 1 }}>
+        <ScrollView ref="scrollView"
+          contentContainerStyle={styles.container}
+          automaticallyAdjustContentInsets={false}
+          horizontal={true}
+          pagingEnabled={true}
+          showsHorizontalScrollIndicator={false}
+          bounces={false}
+          onScrollBeginDrag={this._onAnimationBegin}
+          onMomentumScrollEnd={this._onAnimationEnd}
+        >
+          {this.props.children}
+        </ScrollView>
+        {this.renderPageIndicator()}
+      </View>
+    );
+  },
+
 });
 
 var styles = StyleSheet.create({
@@ -120,13 +166,15 @@ var styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'space-around',
     alignItems: 'center',
-    backgroundColor:'transparent'
+    backgroundColor:'transparent',
   },
   pageIndicatorTop: {
-    top: 20
+    top: 250,
+    alignSelf: 'center',
   },
   pageIndicatorBottom: {
-    bottom:20
+    bottom: 250,
+    alignSelf: 'center',
   }
 });
 
