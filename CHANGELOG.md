@@ -1,4 +1,7 @@
-### 0.4
+### 0.4.1
+- Remove duplicate width calculation when initialPage is defined (@ptmt)
+
+### 0.4.0
 - Add autoplay and looping options (@PraiseGeek)
 
 ### 0.3.5
