@@ -1,3 +1,6 @@
+### 0.4.2
+- Fix for Dimension import
+
 ### 0.4.1
 - Remove duplicate width calculation when initialPage is defined (@ptmt)
 
