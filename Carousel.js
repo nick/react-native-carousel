@@ -2,6 +2,7 @@
 
 var React = require('react-native');
 var {
+  Dimensions,
   StyleSheet,
   View,
   Text,
@@ -10,7 +11,6 @@ var {
 
 var TimerMixin = require('react-timer-mixin');
 
-var Dimensions = require('Dimensions');
 var { width, height} = Dimensions.get('window');
 
 
