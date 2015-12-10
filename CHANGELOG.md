@@ -1,3 +1,6 @@
+### 0.4.3
+- Fix for page loop animation
+
 ### 0.4.2
 - Fix for Dimension import
 
