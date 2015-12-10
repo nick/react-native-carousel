@@ -31,6 +31,7 @@ var Carousel = React.createClass({
       animate: true,
       delay: 1000,
       loop: true,
+      backgroundColor: 'transparent'
     };
   },
 
@@ -135,7 +136,7 @@ var Carousel = React.createClass({
     return (
       <View style={{ flex: 1 }}>
         <ScrollView ref="scrollView"
-          contentContainerStyle={styles.container}
+          contentContainerStyle={[styles.container, {backgroundColor: this.props.backgroundColor}]}
           automaticallyAdjustContentInsets={false}
           horizontal={true}
           pagingEnabled={true}
