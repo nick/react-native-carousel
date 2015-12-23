@@ -11,12 +11,11 @@ var {
 
 var TimerMixin = require('react-timer-mixin');
 
-var { width, height} = Dimensions.get('window');
-
+var { width, height } = Dimensions.get('window');
 
 var Carousel = React.createClass({
-
   mixins: [TimerMixin],
+
   getDefaultProps() {
     return {
       hideIndicators: false,
@@ -24,10 +23,10 @@ var Carousel = React.createClass({
       indicatorSize: 50,
       inactiveIndicatorColor: '#999999',
       indicatorAtBottom: true,
+      indicatorOffset: 250,
       width: width,
       initialPage: 0,
       indicatorSpace: 25,
-      marginDistance: 20, //TODO
       animate: true,
       delay: 1000,
       loop: true,
@@ -37,7 +36,6 @@ var Carousel = React.createClass({
   getInitialState() {
     return {
       activePage: 0,
-      position: { width: 0, height: 0, left: 0 }
     };
   },
 
@@ -53,14 +51,11 @@ var Carousel = React.createClass({
     if (this.props.animate && this.props.children){
         this._setUpTimer();
     }
-
   },
 
-  indicatorPressed(ind){
-    this.setState({
-      activePage:ind
-    });
-    this.refs.scrollView.scrollTo(0,ind*width);
+  indicatorPressed(activePage){
+    this.setState({activePage});
+    this.refs.scrollView.scrollTo(0, activePage * width);
   },
 
   renderPageIndicator() {
@@ -69,7 +64,7 @@ var Carousel = React.createClass({
     }
 
     var indicators = [],
-        indicatorStyle = this.props.indicatorAtBottom ? styles.pageIndicatorBottom : styles.pageIndicatorTop,
+        indicatorStyle = this.props.indicatorAtBottom ? { bottom: this.props.indicatorOffset } : { top: this.props.indicatorOffset },
         style, position;
 
     position = {
@@ -77,7 +72,7 @@ var Carousel = React.createClass({
     };
     position.left = (this.props.width - position.width) / 2;
 
-    for (var i=0; i< this.props.children.length; i++) {
+    for (var i = 0, l = this.props.children.length; i < l; i++) {
       style = i === this.state.activePage ? { color: this.props.indicatorColor } : { color: this.props.inactiveIndicatorColor };
       indicators.push(<Text style={[style, { fontSize: this.props.indicatorSize }]} key={i} onPress={this.indicatorPressed.bind(this,i)}>&bull;</Text>);
     }
@@ -97,19 +92,14 @@ var Carousel = React.createClass({
   },
 
   _animateNextPage() {
-     if (this.state.activePage == this.props.children.length - 1) {
-         if (this.props.loop)
-            var k = 0;
-         else
-            return;
-     } else {
-         var k = this.state.activePage;
-         k++;
+     var activePage = 0;
+     if (this.state.activePage < this.props.children.length - 1) {
+         activePage = this.state.activePage + 1;
+     } else if (!this.props.loop) {
+         return;
      }
 
-     this.setState({activePage: k});
-
-     this.refs.scrollView.scrollTo(0, k * width);
+     this.indicatorPressed(activePage);
      this._setUpTimer();
   },
 
@@ -120,9 +110,7 @@ var Carousel = React.createClass({
   _onAnimationEnd(e) {
     var activePage = e.nativeEvent.contentOffset.x / this.props.width;
 
-    this.setState({
-      activePage: activePage
-    });
+    this.setState({activePage});
 
     if (this.props.onPageChange) {
       this.props.onPageChange(activePage);
@@ -169,16 +157,9 @@ var styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'space-around',
     alignItems: 'center',
+    alignSelf: 'center',
     backgroundColor:'transparent',
   },
-  pageIndicatorTop: {
-    top: 250,
-    alignSelf: 'center',
-  },
-  pageIndicatorBottom: {
-    bottom: 250,
-    alignSelf: 'center',
-  }
 });
 
 module.exports = Carousel;
