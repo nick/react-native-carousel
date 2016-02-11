@@ -131,6 +131,7 @@ var Carousel = React.createClass({
           bounces={false}
           onScrollBeginDrag={this._onAnimationBegin}
           onMomentumScrollEnd={this._onAnimationEnd}
+          scrollsToTop={false}
         >
           {this.props.children}
         </ScrollView>
