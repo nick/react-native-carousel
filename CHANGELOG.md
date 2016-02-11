@@ -1,3 +1,6 @@
+### 0.4.4
+- Added indicatorOffset property (@regeda)
+
 ### 0.4.3
 - Fix for page loop animation
 
