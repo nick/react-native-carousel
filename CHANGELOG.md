@@ -1,3 +1,6 @@
+### 0.4.5
+- Fix scrolling to top when pressing iOS status bar (@juankiz)
+
 ### 0.4.4
 - Added indicatorOffset property (@regeda)
 
