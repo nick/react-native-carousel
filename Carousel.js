@@ -168,18 +168,12 @@ var styles = StyleSheet.create({
     position: 'absolute',
     flexDirection: 'row',
     flex: 1,
+    top: 150,
     justifyContent: 'space-around',
     alignItems: 'center',
+    alignSelf: 'center',
     backgroundColor:'transparent',
   },
-  pageIndicatorTop: {
-    top: 250,
-    alignSelf: 'center',
-  },
-  pageIndicatorBottom: {
-    bottom: 250,
-    alignSelf: 'center',
-  }
 });
 
 module.exports = Carousel;
