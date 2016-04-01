@@ -157,7 +157,7 @@ var styles = StyleSheet.create({
     position: 'absolute',
     flexDirection: 'row',
     flex: 1,
-    top: 150,
+    top: 190,
     justifyContent: 'space-around',
     alignItems: 'center',
     alignSelf: 'center',
