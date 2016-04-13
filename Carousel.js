@@ -41,11 +41,11 @@ var Carousel = React.createClass({
 
   componentDidMount() {
     if (this.props.initialPage > 0) {
-      var width = this.props.initialPage * this.props.width;
+      var initialWidth = this.props.initialPage * this.props.width;
       this.setState({
         activePage: this.props.initialPage
       });
-      this.refs.scrollView.scrollWithoutAnimationTo(0, width);
+      this.refs.scrollView.scrollTo({x: initialWidth, animated: false});
     }
 
     if (this.props.animate && this.props.children){
