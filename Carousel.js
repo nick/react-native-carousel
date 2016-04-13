@@ -54,6 +54,11 @@ var Carousel = React.createClass({
     }
   },
 
+  syncCarouselLocation() {
+   var width = this.state.activePage * this.props.width;
+   this.refs.scrollView && this.refs.scrollView.scrollWithoutAnimationTo(0, width);
+ },
+
   indicatorPressed(activePage){
     this.setState({activePage});
     this.refs.scrollView.scrollTo({y:0, x:activePage * this.props.width});
