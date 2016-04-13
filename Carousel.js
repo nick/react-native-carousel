@@ -55,7 +55,7 @@ var Carousel = React.createClass({
 
   indicatorPressed(activePage){
     this.setState({activePage});
-    this.refs.scrollView.scrollTo(0, activePage * width);
+    this.refs.scrollView.scrollTo({y:0, x:activePage * width});
   },
 
   renderPageIndicator() {
