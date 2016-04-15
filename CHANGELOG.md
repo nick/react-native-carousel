@@ -1,3 +1,7 @@
+### 0.5.0
+- Fix for pressing indicator with custom width (@juankiz)
+- Fix scrollWithoutAnimationTo deprecation warning (@juankiz)
+
 ### 0.4.6
 - Fix depreciated parameter for scrollTo (@ronaldx)
 
