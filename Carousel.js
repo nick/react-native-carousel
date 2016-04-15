@@ -23,7 +23,7 @@ var Carousel = React.createClass({
       indicatorSize: 50,
       inactiveIndicatorColor: '#999999',
       indicatorAtBottom: true,
-      indicatorOffset: 250,
+      indicatorOffset: 10,
       width: width,
       initialPage: 0,
       indicatorSpace: 25,
