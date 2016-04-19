@@ -73,8 +73,16 @@ var Carousel = React.createClass({
     position.left = (this.props.width - position.width) / 2;
 
     for (var i = 0, l = this.props.children.length; i < l; i++) {
+      if (typeof this.props.children[i] === "undefined") {
+        continue;
+      }
+
       style = i === this.state.activePage ? { color: this.props.indicatorColor } : { color: this.props.inactiveIndicatorColor };
       indicators.push(<Text style={[style, { fontSize: this.props.indicatorSize }]} key={i} onPress={this.indicatorPressed.bind(this,i)}>&bull;</Text>);
+    }
+
+    if (indicators.length === 1) {
+      return null;
     }
 
     return (
