@@ -3,10 +3,12 @@
 var React = require('react-native');
 var {
   Dimensions,
-  StyleSheet,
-  View,
-  Text,
+  Platform,
   ScrollView,
+  StyleSheet,
+  Text,
+  View,
+  ViewPagerAndroid,
 } = React;
 
 var TimerMixin = require('react-timer-mixin');
@@ -47,8 +49,7 @@ var Carousel = React.createClass({
 
   componentDidMount() {
     if (this.props.initialPage > 0) {
-      var initialWidth = this.props.initialPage * this.getWidth();
-      this.refs.scrollView.scrollTo({x: initialWidth, animated: false});
+      this.scrollToPage(this.props.initialPage, false);
     }
 
     if (this.props.animate && this.props.children){
@@ -56,9 +57,24 @@ var Carousel = React.createClass({
     }
   },
 
-  indicatorPressed(activePage){
+  scrollToPage(page, animated) {
+    if (typeof animated === 'undefined') {
+      animated = true;
+    }
+    if (this.refs.scrollView !== null) {
+      this.refs.scrollView.scrollTo({x: page * this.getWidth(), y: 0, animated: animated});
+    } else {
+      if (animated) {
+        this.refs.viewPager.setPage(page);
+      } else {
+        this.refs.viewPager.setPageWithoutAnimation(page);
+      }
+    }
+  },
+
+  indicatorPressed(activePage) {
     this.setState({activePage});
-    this.refs.scrollView.scrollTo({y:0, x:activePage * this.getWidth()});
+    this.scrollToPage(activePage);
   },
 
   renderPageIndicator() {
@@ -111,7 +127,12 @@ var Carousel = React.createClass({
   },
 
   _onAnimationEnd(e) {
-    var activePage = e.nativeEvent.contentOffset.x / this.getWidth();
+    var activePage;
+    if (this.refs.viewPager) {
+      activePage = e.nativeEvent.position;
+    } else {
+      activePage = e.nativeEvent.contentOffset.x / this.getWidth();
+    }
 
     this.setState({activePage});
 
@@ -122,10 +143,9 @@ var Carousel = React.createClass({
   },
 
   render() {
-
-    return (
-      <View style={{ flex: 1 }}>
-        <ScrollView ref="scrollView"
+    var contents;
+    if (Platform.OS === 'ios') {
+      contents = <ScrollView ref="scrollView"
           contentContainerStyle={styles.container}
           automaticallyAdjustContentInsets={false}
           horizontal={true}
@@ -137,7 +157,27 @@ var Carousel = React.createClass({
           scrollsToTop={false}
         >
           {this.props.children}
-        </ScrollView>
+        </ScrollView>;
+    } else {
+      contents = <ViewPagerAndroid
+          ref="viewPager"
+          style={{flex: 1}}
+          contentContainerStyle={styles.container}
+          automaticallyAdjustContentInsets={false}
+          horizontal={true}
+          showsHorizontalScrollIndicator={false}
+          bounces={false}
+          onPageScroll={this._onAnimationBeginPage}
+          onPageSelected={this._onAnimationEnd}
+          scrollsToTop={false}
+         >
+          {this.props.children.map((c, idx) => <View key={idx} style={{flex: 1}}>{c}</View>)}
+        </ViewPagerAndroid>;
+    }
+
+    return (
+      <View style={{ flex: 1 }}>
+        {contents}
         {this.renderPageIndicator()}
       </View>
     );
