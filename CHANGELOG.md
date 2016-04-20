@@ -1,3 +1,7 @@
+### 0.6.0
+- Compute width on the fly (@mikelambert)
+- Android support (@mikelambert, @kushal)
+
 ### 0.5.0
 - Fix for pressing indicator with custom width (@juankiz)
 - Fix scrollWithoutAnimationTo deprecation warning (@juankiz)
