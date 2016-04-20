@@ -11,8 +11,6 @@ var {
 
 var TimerMixin = require('react-timer-mixin');
 
-var { width, height } = Dimensions.get('window');
-
 var Carousel = React.createClass({
   mixins: [TimerMixin],
 
@@ -24,7 +22,7 @@ var Carousel = React.createClass({
       inactiveIndicatorColor: '#999999',
       indicatorAtBottom: true,
       indicatorOffset: 250,
-      width: width,
+      width: null,
       initialPage: 0,
       indicatorSpace: 25,
       animate: true,
@@ -35,16 +33,21 @@ var Carousel = React.createClass({
 
   getInitialState() {
     return {
-      activePage: 0,
+      activePage: this.props.initialPage > 0 ? this.props.initialPage : 0,
     };
+  },
+
+  getWidth() {
+    if (this.props.width !== null) {
+      return this.props.width;
+    } else {
+      return Dimensions.get('window').width;
+    }
   },
 
   componentDidMount() {
     if (this.props.initialPage > 0) {
-      var initialWidth = this.props.initialPage * this.props.width;
-      this.setState({
-        activePage: this.props.initialPage
-      });
+      var initialWidth = this.props.initialPage * this.getWidth();
       this.refs.scrollView.scrollTo({x: initialWidth, animated: false});
     }
 
@@ -55,7 +58,7 @@ var Carousel = React.createClass({
 
   indicatorPressed(activePage){
     this.setState({activePage});
-    this.refs.scrollView.scrollTo({y:0, x:activePage * this.props.width});
+    this.refs.scrollView.scrollTo({y:0, x:activePage * this.getWidth()});
   },
 
   renderPageIndicator() {
@@ -70,7 +73,7 @@ var Carousel = React.createClass({
     position = {
       width: this.props.children.length * this.props.indicatorSpace,
     };
-    position.left = (this.props.width - position.width) / 2;
+    position.left = (this.getWidth() - position.width) / 2;
 
     for (var i = 0, l = this.props.children.length; i < l; i++) {
       style = i === this.state.activePage ? { color: this.props.indicatorColor } : { color: this.props.inactiveIndicatorColor };
@@ -108,7 +111,7 @@ var Carousel = React.createClass({
   },
 
   _onAnimationEnd(e) {
-    var activePage = e.nativeEvent.contentOffset.x / this.props.width;
+    var activePage = e.nativeEvent.contentOffset.x / this.getWidth();
 
     this.setState({activePage});
 
