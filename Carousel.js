@@ -4,12 +4,12 @@ var React = require('react-native');
 var {
   Dimensions,
   StyleSheet,
-  View,
   Text,
-  ScrollView,
+  View,
 } = React;
 
 var TimerMixin = require('react-timer-mixin');
+var CarouselPager = require('./CarouselPager');
 
 var Carousel = React.createClass({
   mixins: [TimerMixin],
@@ -47,8 +47,7 @@ var Carousel = React.createClass({
 
   componentDidMount() {
     if (this.props.initialPage > 0) {
-      var initialWidth = this.props.initialPage * this.getWidth();
-      this.refs.scrollView.scrollTo({x: initialWidth, animated: false});
+      this.refs.pager.scrollToPage(this.props.initialPage, false);
     }
 
     if (this.props.animate && this.props.children){
@@ -56,9 +55,9 @@ var Carousel = React.createClass({
     }
   },
 
-  indicatorPressed(activePage){
+  indicatorPressed(activePage) {
     this.setState({activePage});
-    this.refs.scrollView.scrollTo({y:0, x:activePage * this.getWidth()});
+    this.refs.pager.scrollToPage(activePage);
   },
 
   renderPageIndicator() {
@@ -106,38 +105,29 @@ var Carousel = React.createClass({
      this._setUpTimer();
   },
 
-  _onAnimationBegin(e) {
+  _onAnimationBegin() {
      this.clearTimeout(this.timer);
   },
 
-  _onAnimationEnd(e) {
-    var activePage = e.nativeEvent.contentOffset.x / this.getWidth();
-
+  _onAnimationEnd(activePage) {
     this.setState({activePage});
-
     if (this.props.onPageChange) {
       this.props.onPageChange(activePage);
     }
-
   },
 
   render() {
-
     return (
       <View style={{ flex: 1 }}>
-        <ScrollView ref="scrollView"
+        <CarouselPager
+          ref="pager"
+          width={this.getWidth()}
           contentContainerStyle={styles.container}
-          automaticallyAdjustContentInsets={false}
-          horizontal={true}
-          pagingEnabled={true}
-          showsHorizontalScrollIndicator={false}
-          bounces={false}
-          onScrollBeginDrag={this._onAnimationBegin}
-          onMomentumScrollEnd={this._onAnimationEnd}
-          scrollsToTop={false}
+          onBegin={this._onAnimationBeginPage}
+          onEnd={this._onAnimationEnd}
         >
           {this.props.children}
-        </ScrollView>
+        </CarouselPager>
         {this.renderPageIndicator()}
       </View>
     );
