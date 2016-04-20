@@ -3,15 +3,13 @@
 var React = require('react-native');
 var {
   Dimensions,
-  Platform,
-  ScrollView,
   StyleSheet,
   Text,
   View,
-  ViewPagerAndroid,
 } = React;
 
 var TimerMixin = require('react-timer-mixin');
+var CarouselPager = require('./CarouselPager');
 
 var Carousel = React.createClass({
   mixins: [TimerMixin],
@@ -49,7 +47,7 @@ var Carousel = React.createClass({
 
   componentDidMount() {
     if (this.props.initialPage > 0) {
-      this.scrollToPage(this.props.initialPage, false);
+      this.refs.pager.scrollToPage(this.props.initialPage, false);
     }
 
     if (this.props.animate && this.props.children){
@@ -57,24 +55,9 @@ var Carousel = React.createClass({
     }
   },
 
-  scrollToPage(page, animated) {
-    if (typeof animated === 'undefined') {
-      animated = true;
-    }
-    if (this.refs.scrollView !== null) {
-      this.refs.scrollView.scrollTo({x: page * this.getWidth(), y: 0, animated: animated});
-    } else {
-      if (animated) {
-        this.refs.viewPager.setPage(page);
-      } else {
-        this.refs.viewPager.setPageWithoutAnimation(page);
-      }
-    }
-  },
-
   indicatorPressed(activePage) {
     this.setState({activePage});
-    this.scrollToPage(activePage);
+    this.refs.pager.scrollToPage(activePage);
   },
 
   renderPageIndicator() {
@@ -122,62 +105,29 @@ var Carousel = React.createClass({
      this._setUpTimer();
   },
 
-  _onAnimationBegin(e) {
+  _onAnimationBegin() {
      this.clearTimeout(this.timer);
   },
 
-  _onAnimationEnd(e) {
-    var activePage;
-    if (this.refs.viewPager) {
-      activePage = e.nativeEvent.position;
-    } else {
-      activePage = e.nativeEvent.contentOffset.x / this.getWidth();
-    }
-
+  _onAnimationEnd(activePage) {
     this.setState({activePage});
-
     if (this.props.onPageChange) {
       this.props.onPageChange(activePage);
     }
-
   },
 
   render() {
-    var contents;
-    if (Platform.OS === 'ios') {
-      contents = <ScrollView ref="scrollView"
-          contentContainerStyle={styles.container}
-          automaticallyAdjustContentInsets={false}
-          horizontal={true}
-          pagingEnabled={true}
-          showsHorizontalScrollIndicator={false}
-          bounces={false}
-          onScrollBeginDrag={this._onAnimationBegin}
-          onMomentumScrollEnd={this._onAnimationEnd}
-          scrollsToTop={false}
-        >
-          {this.props.children}
-        </ScrollView>;
-    } else {
-      contents = <ViewPagerAndroid
-          ref="viewPager"
-          style={{flex: 1}}
-          contentContainerStyle={styles.container}
-          automaticallyAdjustContentInsets={false}
-          horizontal={true}
-          showsHorizontalScrollIndicator={false}
-          bounces={false}
-          onPageScroll={this._onAnimationBeginPage}
-          onPageSelected={this._onAnimationEnd}
-          scrollsToTop={false}
-         >
-          {this.props.children.map((c, idx) => <View key={idx} style={{flex: 1}}>{c}</View>)}
-        </ViewPagerAndroid>;
-    }
-
     return (
       <View style={{ flex: 1 }}>
-        {contents}
+        <CarouselPager
+          ref="pager"
+          width={this.getWidth()}
+          contentContainerStyle={styles.container}
+          onBegin={this._onAnimationBeginPage}
+          onEnd={this._onAnimationEnd}
+        >
+          {this.props.children}
+        </CarouselPager>
         {this.renderPageIndicator()}
       </View>
     );
