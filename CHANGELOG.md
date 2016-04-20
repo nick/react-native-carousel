@@ -1,3 +1,6 @@
+### 0.6.1
+- Hide inactive indicators (@scottluptowski)
+
 ### 0.6.0
 - Compute width on the fly (@mikelambert)
 - Android support (@mikelambert, @kushal)
