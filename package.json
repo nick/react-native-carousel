@@ -1,4 +1,4 @@
-git p{
+{
   "name": "react-native-carousel",
   "version": "0.7.0",
   "description": "Simple carousel component for react-native",
