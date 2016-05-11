@@ -1,12 +1,12 @@
 'use strict';
 
-var React = require('react-native');
+var React = require('react');
 var {
   Dimensions,
   StyleSheet,
   Text,
   View,
-} = React;
+} = require('react-native');
 
 var TimerMixin = require('react-timer-mixin');
 var CarouselPager = require('./CarouselPager');

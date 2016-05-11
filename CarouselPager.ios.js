@@ -1,7 +1,7 @@
-var React = require('react-native');
+var React = require('react');
 var {
   ScrollView,
-} = React;
+} = require('react-native');
 
 var CarouselPager = React.createClass({
 
