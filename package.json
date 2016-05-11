@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/nick/react-native-carousel",
   "dependencies": {
+    "react": "^15.0.2",
     "react-timer-mixin": "^0.13.3"
   },
   "peerDependencies": {
