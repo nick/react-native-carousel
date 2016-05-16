@@ -1,3 +1,6 @@
+### 0.8.0
+- Custom indicator content (@shidhincr)
+
 ### 0.7.0
 - Call createClass on React instead of React Native (@scottluptowski)
 
