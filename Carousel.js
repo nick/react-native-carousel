@@ -21,7 +21,8 @@ var Carousel = React.createClass({
       indicatorSize: 50,
       inactiveIndicatorColor: '#999999',
       indicatorAtBottom: true,
-      indicatorOffset: 250,
+      indicatorVerticalOffset: 250,
+      indicatorHorizontalOffset: 0,
       indicatorText: '•',
       inactiveIndicatorText: '•',
       width: null,
@@ -68,13 +69,13 @@ var Carousel = React.createClass({
     }
 
     var indicators = [],
-        indicatorStyle = this.props.indicatorAtBottom ? { bottom: this.props.indicatorOffset } : { top: this.props.indicatorOffset },
+        indicatorStyle = this.props.indicatorAtBottom ? { bottom: this.props.indicatorVerticalOffset } : { top: this.props.indicatorVerticalOffset },
         style, position;
 
     position = {
       width: this.props.children.length * this.props.indicatorSpace,
     };
-    position.left = (this.getWidth() - position.width) / 2;
+    position.left = this.props.indicatorHorizontalOffset + (this.getWidth() - position.width) / 2;
 
     for (var i = 0, l = this.props.children.length; i < l; i++) {
       if (typeof this.props.children[i] === "undefined") {
@@ -83,9 +84,9 @@ var Carousel = React.createClass({
 
       style = i === this.state.activePage ? { color: this.props.indicatorColor } : { color: this.props.inactiveIndicatorColor };
       indicators.push(
-         <Text 
-            style={[style, { fontSize: this.props.indicatorSize }]} 
-            key={i} 
+         <Text
+            style={[style, { fontSize: this.props.indicatorSize }]}
+            key={i}
             onPress={this.indicatorPressed.bind(this,i)}
           >
              { i === this.state.activePage  ? this.props.indicatorText : this.props.inactiveIndicatorText }
