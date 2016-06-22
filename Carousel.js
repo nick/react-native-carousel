@@ -155,9 +155,7 @@ var Carousel = React.createClass({
 
 var styles = StyleSheet.create({
   container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignSelf: 'stretch'
+    justifyContent: 'center'
   },
   page: {
     alignItems: 'center',
