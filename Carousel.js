@@ -157,6 +157,7 @@ var styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
+    alignSelf: 'stretch'
   },
   page: {
     alignItems: 'center',
