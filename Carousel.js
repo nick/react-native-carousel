@@ -27,6 +27,7 @@ var Carousel = React.createClass({
       width: null,
       initialPage: 0,
       indicatorSpace: 25,
+      bounces: false,
       animate: true,
       delay: 1000,
       loop: true,
@@ -83,9 +84,9 @@ var Carousel = React.createClass({
 
       style = i === this.state.activePage ? { color: this.props.indicatorColor } : { color: this.props.inactiveIndicatorColor };
       indicators.push(
-         <Text 
-            style={[style, { fontSize: this.props.indicatorSize }]} 
-            key={i} 
+         <Text
+            style={[style, { fontSize: this.props.indicatorSize }]}
+            key={i}
             onPress={this.indicatorPressed.bind(this,i)}
           >
              { i === this.state.activePage  ? this.props.indicatorText : this.props.inactiveIndicatorText }
@@ -143,6 +144,7 @@ var Carousel = React.createClass({
           contentContainerStyle={styles.container}
           onBegin={this._onAnimationBeginPage}
           onEnd={this._onAnimationEnd}
+          bounces={this.props.bounces}
         >
           {this.props.children}
         </CarouselPager>
