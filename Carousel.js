@@ -83,9 +83,9 @@ var Carousel = React.createClass({
 
       style = i === this.state.activePage ? { color: this.props.indicatorColor } : { color: this.props.inactiveIndicatorColor };
       indicators.push(
-         <Text 
-            style={[style, { fontSize: this.props.indicatorSize }]} 
-            key={i} 
+         <Text
+            style={[style, { fontSize: this.props.indicatorSize }]}
+            key={i}
             onPress={this.indicatorPressed.bind(this,i)}
           >
              { i === this.state.activePage  ? this.props.indicatorText : this.props.inactiveIndicatorText }
@@ -154,15 +154,6 @@ var Carousel = React.createClass({
 });
 
 var styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-  },
-  page: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    borderWidth: 1,
-  },
   pageIndicator: {
     position: 'absolute',
     flexDirection: 'row',
