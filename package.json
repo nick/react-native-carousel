@@ -1,6 +1,6 @@
 {
   "name": "react-native-carousel",
-  "version": "0.8.0",
+  "version": "0.9.0",
   "description": "Simple carousel component for react-native",
   "main": "Carousel.js",
   "scripts": {
@@ -24,6 +24,6 @@
     "react-timer-mixin": "^0.13.3"
   },
   "peerDependencies": {
-    "react-native": ">=0.4 <1.0"
+    "react-native": ">=0.28 <1.0"
   }
 }

@@ -1,3 +1,6 @@
+### 0.9.0
+- Fix carousel in iOS with react-native 0.28 (@francisco-sanchez-molina)
+
 ### 0.8.0
 - Custom indicator content (@shidhincr)
 
