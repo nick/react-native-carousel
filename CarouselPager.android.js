@@ -15,10 +15,11 @@ var CarouselPager = React.createClass({
     } else {
       this.refs.viewPager.setPageWithoutAnimation(page);
     }
+    this._onPageSelected(page);
   },
 
-  _onPageSelected(e) {
-    this.props.onEnd(e.nativeEvent.position);
+  _onPageSelected(page) {
+    this.props.onEnd(page);
   },
 
   render() {
@@ -31,7 +32,7 @@ var CarouselPager = React.createClass({
       showsHorizontalScrollIndicator={false}
       bounces={false}
       onPageScroll={this.props.onBegin}
-      onPageSelected={this._onPageSelected}
+      onPageSelected={(e) => this._onPageSelected(e.nativeEvent.position)}
       scrollsToTop={false}
       >
         {this.props.children.map((c, idx) => <View key={idx} style={{flex: 1}}>{c}</View>)}
