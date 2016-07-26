@@ -1,3 +1,6 @@
+### 0.9.1
+- onPageChange never called on indicator press on Android (@lideen)
+
 ### 0.9.0
 - Fix carousel in iOS with react-native 0.28 (@francisco-sanchez-molina)
 
