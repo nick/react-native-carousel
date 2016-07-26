@@ -1,3 +1,6 @@
+### 0.10.0
+- Fix horizontal scroll in RN v0.28 (@sghiassy, @dmccer)
+
 ### 0.9.1
 - onPageChange never called on indicator press on Android (@lideen)
 
