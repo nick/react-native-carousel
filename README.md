@@ -9,10 +9,9 @@ npm install react-native-carousel
 
 ```
 hideIndicators={false} // Set to true to hide the indicators
-indicatorColor="#FFFFFF" // Active indicator color
-indicatorSize={20} // Indicator bullet size
+indicatorStyle={color: '#000000', fontSize: 50} // Active indicator style
+inactiveIndicatorStyle={color: '#999999', fontSize: 50} // Inactive indicator style
 indicatorSpace={15} // space between each indicator
-inactiveIndicatorColor="#999999" // Inactive indicator color
 indicatorAtBottom={true} // Set to false to show the indicators at the top
 indicatorOffset={250} // Indicator relative position from top or bottom
 onPageChange={callback} // Called when the active page changes

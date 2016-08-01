@@ -2,11 +2,11 @@
 
 var React = require('react');
 var {
-  Dimensions,
-  StyleSheet,
-  Text,
-  View,
-} = require('react-native');
+      Dimensions,
+      StyleSheet,
+      Text,
+      View,
+    } = require('react-native');
 
 var TimerMixin = require('react-timer-mixin');
 var CarouselPager = require('./CarouselPager');
@@ -17,9 +17,8 @@ var Carousel = React.createClass({
   getDefaultProps() {
     return {
       hideIndicators: false,
-      indicatorColor: '#000000',
-      indicatorSize: 50,
-      inactiveIndicatorColor: '#999999',
+      indicatorStyle: styles.defaultIndicatorStyle,
+      inactiveIndicatorStyle: styles.defaultInactiveIndicatorStyle,
       indicatorAtBottom: true,
       indicatorOffset: 250,
       indicatorText: '•',
@@ -53,7 +52,7 @@ var Carousel = React.createClass({
     }
 
     if (this.props.animate && this.props.children){
-        this._setUpTimer();
+      this._setUpTimer();
     }
   },
 
@@ -81,15 +80,17 @@ var Carousel = React.createClass({
         continue;
       }
 
-      style = i === this.state.activePage ? { color: this.props.indicatorColor } : { color: this.props.inactiveIndicatorColor };
+      style = i === this.state.activePage
+        ? this.props.indicatorStyle
+        : this.props.inactiveIndicatorStyle;
       indicators.push(
-         <Text
-            style={[style, { fontSize: this.props.indicatorSize }]}
-            key={i}
-            onPress={this.indicatorPressed.bind(this,i)}
-          >
-             { i === this.state.activePage  ? this.props.indicatorText : this.props.inactiveIndicatorText }
-          </Text>
+        <Text
+          style={style}
+          key={i}
+          onPress={this.indicatorPressed.bind(this,i)}
+        >
+          { i === this.state.activePage  ? this.props.indicatorText : this.props.inactiveIndicatorText }
+        </Text>
       );
     }
 
@@ -105,26 +106,26 @@ var Carousel = React.createClass({
   },
 
   _setUpTimer() {
-     if (this.props.children.length > 1) {
-         this.clearTimeout(this.timer);
-         this.timer = this.setTimeout(this._animateNextPage, this.props.delay);
-     }
+    if (this.props.children.length > 1) {
+      this.clearTimeout(this.timer);
+      this.timer = this.setTimeout(this._animateNextPage, this.props.delay);
+    }
   },
 
   _animateNextPage() {
-     var activePage = 0;
-     if (this.state.activePage < this.props.children.length - 1) {
-         activePage = this.state.activePage + 1;
-     } else if (!this.props.loop) {
-         return;
-     }
+    var activePage = 0;
+    if (this.state.activePage < this.props.children.length - 1) {
+      activePage = this.state.activePage + 1;
+    } else if (!this.props.loop) {
+      return;
+    }
 
-     this.indicatorPressed(activePage);
-     this._setUpTimer();
+    this.indicatorPressed(activePage);
+    this._setUpTimer();
   },
 
   _onAnimationBegin() {
-     this.clearTimeout(this.timer);
+    this.clearTimeout(this.timer);
   },
 
   _onAnimationEnd(activePage) {
@@ -163,6 +164,14 @@ var styles = StyleSheet.create({
     alignSelf: 'center',
     backgroundColor:'transparent',
   },
+  defaultIndicatorStyle: {
+    color: '#000000',
+    fontSize: 50,
+  },
+  defaultInactiveIndicatorStyle: {
+    fontSize: 50,
+    color: '#999999',
+  }
 });
 
 module.exports = Carousel;
