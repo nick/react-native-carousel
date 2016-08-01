@@ -3,13 +3,13 @@
 var React = require('react');
 var {
       Dimensions,
-      StyleSheet,
       Text,
       View,
     } = require('react-native');
 
 var TimerMixin = require('react-timer-mixin');
 var CarouselPager = require('./CarouselPager');
+var styles = require('./styles');
 
 var Carousel = React.createClass({
   mixins: [TimerMixin],
@@ -151,27 +151,6 @@ var Carousel = React.createClass({
       </View>
     );
   },
-
-});
-
-var styles = StyleSheet.create({
-  pageIndicator: {
-    position: 'absolute',
-    flexDirection: 'row',
-    flex: 1,
-    justifyContent: 'space-around',
-    alignItems: 'center',
-    alignSelf: 'center',
-    backgroundColor:'transparent',
-  },
-  defaultIndicatorStyle: {
-    color: '#000000',
-    fontSize: 50,
-  },
-  defaultInactiveIndicatorStyle: {
-    fontSize: 50,
-    color: '#999999',
-  }
 });
 
 module.exports = Carousel;
