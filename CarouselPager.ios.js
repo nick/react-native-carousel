@@ -1,6 +1,7 @@
 var React = require('react');
 var {
   ScrollView,
+  View
 } = require('react-native');
 
 var CarouselPager = React.createClass({
@@ -29,9 +30,13 @@ var CarouselPager = React.createClass({
       onMomentumScrollEnd={this._onMomentumScrollEnd}
       scrollsToTop={false}
     >
-      {this.props.children}
+      {React.Children.map(this.props.children, this.setWidth)}
     </ScrollView>;
   },
+
+  setWidth(child) {
+    return (<View style={{ width: this.props.width }}>{child}</View>)
+  }
 });
 
 module.exports = CarouselPager;
