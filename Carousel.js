@@ -30,27 +30,9 @@ var Carousel = React.createClass({
       animate: true,
       delay: 1000,
       loop: true,
-      carouselActivePage: 0,
     };
   },
-
-  componentDidUpdate(prevProps, prevState) {
-    const { carouselActivePage } = this.props
-
-
-
-    if (carouselActivePage != prevProps.carouselActivePage) {
-      var activePage = 0;
-      if (carouselActivePage <= (this.props.children.length - 1)) {
-          activePage = carouselActivePage;
-      } else {
-          return;
-      }
-
-      this.indicatorPressed(activePage);
-    }
-  },
-
+  
   getInitialState() {
     return {
       activePage: this.props.initialPage > 0 ? this.props.initialPage : 0,
