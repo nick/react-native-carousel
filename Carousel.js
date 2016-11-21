@@ -63,7 +63,7 @@ var Carousel = React.createClass({
   
   componentWillUpdate(nextProps) {
     if (this.state.activePage !== nextProps.activePage) {
-      this.changePage(nextprops.activePage);
+      this.changePage(nextProps.activePage);
     }
   },
   
