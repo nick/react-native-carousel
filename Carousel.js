@@ -28,6 +28,7 @@ var Carousel = createReactClass({
       width: null,
       initialPage: 0,
       indicatorSpace: 25,
+      bounces: false,
       animate: true,
       delay: 1000,
       loop: true,
@@ -144,6 +145,7 @@ var Carousel = createReactClass({
           contentContainerStyle={styles.container}
           onBegin={this._onAnimationBeginPage}
           onEnd={this._onAnimationEnd}
+          bounces={this.props.bounces}
         >
           {this.props.children}
         </CarouselPager>
