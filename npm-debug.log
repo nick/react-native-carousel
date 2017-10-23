@@ -1,0 +1,109 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/usr/local/bin/node', '/usr/local/bin/npm', 'publish' ]
+2 info using npm@3.8.9
+3 info using node@v6.2.0
+4 verbose publish [ '.' ]
+5 silly cache add args [ '.', null ]
+6 verbose cache add spec .
+7 silly cache add parsed spec Result {
+7 silly cache add   raw: '.',
+7 silly cache add   scope: null,
+7 silly cache add   name: null,
+7 silly cache add   rawSpec: '.',
+7 silly cache add   spec: '/Users/nick/Projects/react-native-carousel',
+7 silly cache add   type: 'directory' }
+8 verbose addLocalDirectory /Users/nick/.npm/react-native-carousel/0.10.0/package.tgz not in flight; packing
+9 verbose correctMkdir /Users/nick/.npm correctMkdir not in flight; initializing
+10 info lifecycle react-native-carousel@0.10.0~prepublish: react-native-carousel@0.10.0
+11 silly lifecycle react-native-carousel@0.10.0~prepublish: no script for prepublish, continuing
+12 verbose tar pack [ '/Users/nick/.npm/react-native-carousel/0.10.0/package.tgz',
+12 verbose tar pack   '/Users/nick/Projects/react-native-carousel' ]
+13 verbose tarball /Users/nick/.npm/react-native-carousel/0.10.0/package.tgz
+14 verbose folder /Users/nick/Projects/react-native-carousel
+15 verbose addLocalTarball adding from inside cache /Users/nick/.npm/react-native-carousel/0.10.0/package.tgz
+16 verbose correctMkdir /Users/nick/.npm correctMkdir not in flight; initializing
+17 silly cache afterAdd react-native-carousel@0.10.0
+18 verbose afterAdd /Users/nick/.npm/react-native-carousel/0.10.0/package/package.json not in flight; writing
+19 verbose correctMkdir /Users/nick/.npm correctMkdir not in flight; initializing
+20 verbose afterAdd /Users/nick/.npm/react-native-carousel/0.10.0/package/package.json written
+21 silly publish { name: 'react-native-carousel',
+21 silly publish   version: '0.10.0',
+21 silly publish   description: 'Simple carousel component for react-native',
+21 silly publish   main: 'Carousel.js',
+21 silly publish   scripts: { test: 'echo "Error: no test specified" && exit 1' },
+21 silly publish   repository:
+21 silly publish    { type: 'git',
+21 silly publish      url: 'https://github.com/nick/react-native-carousel.git' },
+21 silly publish   keywords: [ 'react-native', 'carousel' ],
+21 silly publish   author:
+21 silly publish    { name: 'Nick Poulden',
+21 silly publish      email: 'nick@poulden.com',
+21 silly publish      url: 'https://github.com/nick' },
+21 silly publish   license: 'MIT',
+21 silly publish   bugs: { url: 'https://github.com/nick/react-native-carousel/issues' },
+21 silly publish   homepage: 'https://github.com/nick/react-native-carousel',
+21 silly publish   dependencies: { 'react-timer-mixin': '^0.13.3' },
+21 silly publish   peerDependencies: { 'react-native': '>=0.28 <1.0' },
+21 silly publish   readme: '## Carousel component for react-native\n\n### Installation\n```bash\nnpm install react-native-carousel\n```\n\n###Properties\n\n```\nhideIndicators={false} // Set to true to hide the indicators\nindicatorColor="#FFFFFF" // Active indicator color\nindicatorSize={20} // Indicator bullet size\nindicatorSpace={15} // space between each indicator\ninactiveIndicatorColor="#999999" // Inactive indicator color\nindicatorAtBottom={true} // Set to false to show the indicators at the top\nindicatorOffset={250} // Indicator relative position from top or bottom\nonPageChange={callback} // Called when the active page changes\ninactiveIndicatorText= \'•\' // Inactive indicator content ( You can customize to use any Unicode character )\nindicatorText= \'•\' // Active indicator content ( You can customize to use any Unicode character )\n\nanimate={true} // Enable carousel autoplay\ndelay={1000} // Set Animation delay between slides\nloop={true} // Allow infinite looped animation. Depends on Prop {...animate} set to true.\n \n```\n\n### Usage example\n\nAssuming you have `npm install -g react-native-cli`, first generate an app:\n\n    react-native init RNCarousel\n    cd RNCarousel\n    npm install react-native-carousel --save\n\nThen paste the following into `RNCarousel/index.ios.js`:\n\n```javascript\n\'use strict\';\n\nvar React = require(\'react-native\');\nvar {\n  AppRegistry,\n  StyleSheet,\n  Text,\n  View,\n} = React;\n\nvar Carousel = require(\'react-native-carousel\');\n\nvar RNCarousel = React.createClass({\n  render: function() {\n    return (\n      <Carousel width={375}>\n        <View style={styles.container}>\n          <Text>Page 1</Text>\n        </View>\n        <View style={styles.container}>\n          <Text>Page 2</Text>\n        </View>\n        <View style={styles.container}>\n          <Text>Page 3</Text>\n        </View>\n      </Carousel>\n    );\n  }\n});\n\nvar styles = StyleSheet.create({\n  container: {\n    width: 375,\n    flex: 1,\n    justifyContent: \'center\',\n    alignItems: \'center\',\n    backgroundColor: \'transparent\',\n  },\n});\n\nAppRegistry.registerComponent(\'RNCarousel\', () => RNCarousel);\n```\n',
+21 silly publish   readmeFilename: 'README.md',
+21 silly publish   gitHead: 'cf8ca562178d72abbb5db5aa6984615222547f21',
+21 silly publish   _id: 'react-native-carousel@0.10.0',
+21 silly publish   _shasum: 'f4becc5ff46f66585d0ec9e42dce1efb1d7e571a',
+21 silly publish   _from: '.' }
+22 verbose getPublishConfig undefined
+23 silly mapToRegistry name react-native-carousel
+24 silly mapToRegistry using default registry
+25 silly mapToRegistry registry https://registry.npmjs.org/
+26 silly mapToRegistry data Result {
+26 silly mapToRegistry   raw: 'react-native-carousel',
+26 silly mapToRegistry   scope: null,
+26 silly mapToRegistry   name: 'react-native-carousel',
+26 silly mapToRegistry   rawSpec: '',
+26 silly mapToRegistry   spec: 'latest',
+26 silly mapToRegistry   type: 'tag' }
+27 silly mapToRegistry uri https://registry.npmjs.org/react-native-carousel
+28 verbose publish registryBase https://registry.npmjs.org/
+29 silly publish uploading /Users/nick/.npm/react-native-carousel/0.10.0/package.tgz
+30 verbose request uri https://registry.npmjs.org/react-native-carousel
+31 verbose request sending authorization for write operation
+32 info attempt registry request try #1 at 12:31:22 PM
+33 verbose request id d55ac47a92d6e2f4
+34 http request PUT https://registry.npmjs.org/react-native-carousel
+35 http 403 https://registry.npmjs.org/react-native-carousel
+36 verbose headers { 'content-type': 'application/json',
+36 verbose headers   'cache-control': 'max-age=300',
+36 verbose headers   'content-length': '96',
+36 verbose headers   'accept-ranges': 'bytes',
+36 verbose headers   date: 'Tue, 26 Jul 2016 18:31:23 GMT',
+36 verbose headers   via: '1.1 varnish',
+36 verbose headers   connection: 'keep-alive',
+36 verbose headers   'x-served-by': 'cache-sjc3128-SJC',
+36 verbose headers   'x-cache': 'MISS',
+36 verbose headers   'x-cache-hits': '0',
+36 verbose headers   'x-timer': 'S1469557883.327890,VS0,VE150',
+36 verbose headers   vary: 'Accept-Encoding' }
+37 verbose request invalidating /Users/nick/.npm/registry.npmjs.org/react-native-carousel on PUT
+38 error publish Failed PUT 403
+39 verbose stack Error: "You cannot publish over the previously published version 0.10.0." : react-native-carousel
+39 verbose stack     at makeError (/usr/local/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:264:12)
+39 verbose stack     at CachingRegistryClient.<anonymous> (/usr/local/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:252:14)
+39 verbose stack     at Request._callback (/usr/local/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:172:14)
+39 verbose stack     at Request.self.callback (/usr/local/lib/node_modules/npm/node_modules/request/request.js:200:22)
+39 verbose stack     at emitTwo (events.js:106:13)
+39 verbose stack     at Request.emit (events.js:191:7)
+39 verbose stack     at Request.<anonymous> (/usr/local/lib/node_modules/npm/node_modules/request/request.js:1067:10)
+39 verbose stack     at emitOne (events.js:101:20)
+39 verbose stack     at Request.emit (events.js:188:7)
+39 verbose stack     at IncomingMessage.<anonymous> (/usr/local/lib/node_modules/npm/node_modules/request/request.js:988:12)
+40 verbose statusCode 403
+41 verbose pkgid react-native-carousel
+42 verbose cwd /Users/nick/Projects/react-native-carousel
+43 error Darwin 15.6.0
+44 error argv "/usr/local/bin/node" "/usr/local/bin/npm" "publish"
+45 error node v6.2.0
+46 error npm  v3.8.9
+47 error code E403
+48 error "You cannot publish over the previously published version 0.10.0." : react-native-carousel
+49 error If you need help, you may report this error at:
+49 error     <https://github.com/npm/npm/issues>
+50 verbose exit [ 1, true ]

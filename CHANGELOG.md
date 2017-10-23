@@ -1,3 +1,6 @@
+### 0.11.0
+- React 16 support (@abuinitski)
+
 ### 0.10.0
 - Fix horizontal scroll in RN v0.28 (@sghiassy, @dmccer)
 
