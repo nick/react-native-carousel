@@ -31,6 +31,7 @@ var Carousel = createReactClass({
       animate: true,
       delay: 1000,
       loop: true,
+      manualStop: false,
     };
   },
 
@@ -114,11 +115,14 @@ var Carousel = createReactClass({
 
   _animateNextPage() {
      var activePage = 0;
-     if (this.state.activePage < this.props.children.length - 1) {
+     if(this.props.manualStop == false)
+     {
+       if (this.state.activePage < this.props.children.length - 1) {
          activePage = this.state.activePage + 1;
-     } else if (!this.props.loop) {
+        } else if (!this.props.loop) {
          return;
-     }
+      }
+    }
 
      this.indicatorPressed(activePage);
      this._setUpTimer();
