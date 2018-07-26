@@ -5,9 +5,9 @@
 npm install react-native-carousel
 ```
 
-###Properties
+### Properties
 
-```
+```js
 hideIndicators={false} // Set to true to hide the indicators
 indicatorColor="#FFFFFF" // Active indicator color
 indicatorSize={20} // Indicator bullet size
