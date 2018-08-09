@@ -36,7 +36,12 @@ var CarouselPager = createReactClass({
       onPageSelected={(e) => this._onPageSelected(e.nativeEvent.position)}
       scrollsToTop={false}
       >
-        {this.props.children.map((c, idx) => <View key={idx} style={{flex: 1}}>{c}</View>)}
+      {(()=>{
+        if(this.props.children.length > 1)
+            return this.props.children.map((c, idx) => <View key={idx} style={{flex: 1}}>{c}</View>)
+        else
+            return this.props.children
+      })()}
       </ViewPagerAndroid>;
   },
 });
