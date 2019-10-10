@@ -22,9 +22,7 @@
   "homepage": "https://github.com/nick/react-native-carousel",
   "dependencies": {
     "@react-native-community/viewpager": "^1.1.7",
-    "add": "^2.0.6",
-    "react-timer-mixin": "^0.13.3",
-    "yarn": "^1.17.3"
+    "react-timer-mixin": "^0.13.3"
   },
   "peerDependencies": {
     "create-react-class": ">=15.6.2",
