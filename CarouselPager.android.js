@@ -1,9 +1,9 @@
 var React = require('react');
 var createReactClass = require('create-react-class');
 var {
-  View,
-  ViewPagerAndroid,
+  View
 } = require('react-native');
+import ViewPager from "@react-native-community/viewpager";
 
 var CarouselPager = createReactClass({
 
@@ -24,7 +24,7 @@ var CarouselPager = createReactClass({
   },
 
   render() {
-    return <ViewPagerAndroid
+    return <ViewPager
       ref="viewPager"
       style={{flex: 1}}
       contentContainerStyle={this.props.contentContainerStyle}
@@ -37,7 +37,7 @@ var CarouselPager = createReactClass({
       scrollsToTop={false}
       >
         {this.props.children.map((c, idx) => <View key={idx} style={{flex: 1}}>{c}</View>)}
-      </ViewPagerAndroid>;
+      </ViewPager>;
   },
 });
 
