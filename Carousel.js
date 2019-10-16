@@ -22,7 +22,8 @@ var Carousel = createReactClass({
       indicatorSize: 50,
       inactiveIndicatorColor: '#999999',
       indicatorAtBottom: true,
-      indicatorOffset: 250,
+      indicatorVerticalOffset: 250,
+      indicatorHorizontalOffset: 0,
       indicatorText: '•',
       inactiveIndicatorText: '•',
       width: null,
@@ -69,13 +70,13 @@ var Carousel = createReactClass({
     }
 
     var indicators = [],
-        indicatorStyle = this.props.indicatorAtBottom ? { bottom: this.props.indicatorOffset } : { top: this.props.indicatorOffset },
+        indicatorStyle = this.props.indicatorAtBottom ? { bottom: this.props.indicatorVerticalOffset } : { top: this.props.indicatorVerticalOffset },
         style, position;
 
     position = {
       width: this.props.children.length * this.props.indicatorSpace,
     };
-    position.left = (this.getWidth() - position.width) / 2;
+    position.left = this.props.indicatorHorizontalOffset + (this.getWidth() - position.width) / 2;
 
     for (var i = 0, l = this.props.children.length; i < l; i++) {
       if (typeof this.props.children[i] === "undefined") {
