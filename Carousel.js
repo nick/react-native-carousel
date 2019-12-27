@@ -69,7 +69,7 @@ var Carousel = createReactClass({
     }
 
     var indicators = [],
-        indicatorStyle = this.props.indicatorAtBottom ? { bottom: this.props.indicatorOffset } : { top: this.props.indicatorOffset },
+        indicatorStyle = this.props.indicatorAtBottom ? { top: this.props.indicatorOffset } : { bottom: this.props.indicatorOffset },
         style, position;
 
     position = {
