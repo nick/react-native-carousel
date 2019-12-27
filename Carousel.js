@@ -33,7 +33,7 @@ var Carousel = createReactClass({
       loop: true,
     };
   },
-
+  
   getInitialState() {
     return {
       activePage: this.props.initialPage > 0 ? this.props.initialPage : 0,
@@ -121,7 +121,10 @@ var Carousel = createReactClass({
      }
 
      this.indicatorPressed(activePage);
-     this._setUpTimer();
+
+     if (this.props.animate){
+         this._setUpTimer();
+     }
   },
 
   _onAnimationBegin() {
