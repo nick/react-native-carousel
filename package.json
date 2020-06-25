@@ -1,6 +1,6 @@
 {
   "name": "react-native-carousel",
-  "version": "0.3.3",
+  "version": "0.12.0",
   "description": "Simple carousel component for react-native",
   "main": "Carousel.js",
   "scripts": {
@@ -21,6 +21,11 @@
   },
   "homepage": "https://github.com/nick/react-native-carousel",
   "dependencies": {
-    "react-native": "^0.4.0"
+    "@react-native-community/viewpager": "^1.1.7",
+    "react-timer-mixin": "^0.13.3"
+  },
+  "peerDependencies": {
+    "create-react-class": ">=15.6.2",
+    "react-native": ">=0.28 <1.0"
   }
 }
