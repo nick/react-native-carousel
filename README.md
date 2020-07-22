@@ -1,3 +1,5 @@
+[![DepShield Badge](https://depshield.sonatype.org/badges/bradsolves/react-native-carousel/depshield.svg)](https://depshield.github.io)
+
 ## Carousel component for react-native
 
 ### Installation
